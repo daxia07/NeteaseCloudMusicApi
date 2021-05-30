@@ -65,6 +65,7 @@ const createRequest = (method, url, data, options) => {
     if (!headers['Cookie']) {
       headers['Cookie'] = options.token || ''
     }
+    headers['X-Real-IP'] = process.env.REAL_IP
     if (options.crypto === 'weapi') {
       let csrfToken = (headers['Cookie'] || '').match(/_csrf=([^(;|$)]+)/)
       data.csrf_token = csrfToken ? csrfToken[1] : ''
